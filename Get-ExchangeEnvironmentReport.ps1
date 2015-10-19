@@ -91,7 +91,7 @@
 	
 	#>
 param(
-	[parameter(Position=0,Mandatory=$true,ValueFromPipeline=$false,HelpMessage='Filename to write HTML report to')][string]$HTMLReport,
+	[parameter(Position=0,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Filename to write HTML report to')][string]$HTMLReport,
 	[parameter(Position=1,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Send Mail ($True/$False)')][bool]$SendMail=$false,
 	[parameter(Position=2,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Mail From')][string]$MailFrom,
 	[parameter(Position=3,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Mail To')]$MailTo,
@@ -100,6 +100,14 @@ param(
 	[parameter(Position=5,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Change view to entire forest')][bool]$ViewEntireForest=$true,
 	[parameter(Position=5,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Server Name Filter (eg NL-*)')][string]$ServerFilter="*"
 	)
+
+$nl=[Environment]::NewLine
+if (!$HTMLReport) {
+	$HTMLReport = $(get-Date -f yyyyMMdd) + ".html"
+	Write-Host "$nl"
+	Write-Host "Auto-generating " -NoNewLine
+	Write-Host "$HTMLReport$nl$nl" -foregroundcolor green
+}
 
 # Sub-Function to Get Database Information. Shorter than expected..
 function _GetDAG
