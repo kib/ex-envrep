@@ -3476,7 +3476,7 @@
 			        }
 			        if ($Database.ExchangeVersion.ExchangeBuild.Major -ge 14)
 			        {
-				        if ($Database.LogFolderPath.PathName -like "$($Disk.Name)*")
+				        if ($($Database.LogFolderPath.PathName + "\") -eq $($Disk.Name))
 				        {
 					        $FreeLogDiskSpace = $Disk.FreeSpace / $Disk.Capacity * 100
 				        }
