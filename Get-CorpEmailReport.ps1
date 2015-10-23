@@ -381,7 +381,21 @@
 
 #++++++++++++++++++++++++++++++++++++   Module 2 : Function    ++++++++++++++++++++++++++++++++++++
 
-
++#Add Exchange 2010 snapin if not already loaded in the PowerShell session
++if (!(Get-PSSnapin | where {$_.Name -eq "Microsoft.Exchange.Management.PowerShell.E2010"}))
+{
+    try
+    {
+        Add-PSSnapin Microsoft.Exchange.Management.PowerShell.E2010 -ErrorAction STOP
+    }
+    catch
+    {
+        Write-Warning $_.Exception.Message
+        EXIT
+    }
+    . $env:ExchangeInstallPath\bin\RemoteExchange.ps1
+    Connect-ExchangeServer -auto -AllowClobber
+}
 
 #region Module 2 : Functions
 
