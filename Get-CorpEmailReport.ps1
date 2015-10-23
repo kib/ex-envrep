@@ -362,13 +362,13 @@
     if(!$ScriptFilesPath){$ScriptFilesPath=".\"}
 
     #Threshold for days since last database backup (warning threshold) . Color warning will show otherwise
-	[int]$BackupWarning = 1000
+	[int]$BackupWarning = 3
 
     #Threshold for days since last database backup (Error threshold) . Color warning will show otherwise
-	[int]$BackupError = 2000
+	[int]$BackupError = 5
 
     #Threshold for days since Exchange Servers have been restarted (Numbers represents days) . Color warning will show otherwise
-    [int]$UptimeErrorThreshold   = 600	                  
+    [int]$UptimeErrorThreshold   = 100                  
 
     #Coloring
     $greenColor    = "#00FF00"
