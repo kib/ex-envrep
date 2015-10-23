@@ -5500,8 +5500,11 @@
                                         "CU7" = "CU7"
                                         "CU8" = "CU8"
                                         "CU9" = "CU9"
+                                        "CU10" = "CU10"
+                                        "CU11" = "CU11"
                                         "SP1" = "SP1"
-                                        "SP2" = "SP2"}
+                                        "SP2" = "SP2"
+                                        "SP3" = "SP3"}
 
                  #Exchange Role String Mapping
                 $ExRoleStrings = @{"ClusteredMailbox" = @{Short="ClusMBX";Long="CCR/SCC Clustered Mailbox"}
@@ -6735,4 +6738,5 @@
 
 
 #++++++++++++++++++++++++++++++++++++             END            ++++++++++++++++++++++++++++++++++++
+
 
