@@ -120,7 +120,7 @@
                 [The script is armed with totally new reliable Chart engine “code name: Get-CorpChart_Light” that will do smart calculation to change the chart dimensions and size depending on the number of input data. You will no longer get so crowded charts filled with letters that you cannot read. The chart will use a smart algorithm to calculate the best dimension of the graph depending on the number of input data].
 
         13.	Better Error and Exception Handling.
-                [The script uses complicated logic to track exception and errors, classifying them to categories, logging them to different log files using an internal function called “Write-CorpError”. After that, in most cases, the error will be logged, execution will continue without bothering you with on screen bad error messages. If the error affects the execution of the script, a nice and informative message will be displayed on the screen and log files with suggestions if possible to how to solve it].
+                [The script uses complicated logic to track exception and errors, classifying them to categories, logging them to different log files using an internal function called “#Write-CorpError”. After that, in most cases, the error will be logged, execution will continue without bothering you with on screen bad error messages. If the error affects the execution of the script, a nice and informative message will be displayed on the screen and log files with suggestions if possible to how to solve it].
 
         14.	Works with all Exchange versions.
              [This was a limitation on the previous script that only work with Exchange 2010]
@@ -174,7 +174,7 @@
         [Steve Goodman's Exchange Environemnt Report (version 1.5.8) Published February 2,2014]
            
         I also used couple of helper functions from the online community like the Log Functions [http://9to5it.com/] and the 
-        Write-CorpError (based on script code from PowerShell Deep Dives Book)
+        #Write-CorpError (based on script code from PowerShell Deep Dives Book)
 
         All copy rights are mentions in the code itself.
 
@@ -438,7 +438,7 @@
             Purpose/Change: Added debug mode support
  
             .EXAMPLE
-            Log-Start -LogFullPath "C:\Windows\Temp\mylog.log"
+            #Log-Start -LogFullPath "C:\Windows\Temp\mylog.log"
             #>
     
             [CmdletBinding()]
@@ -496,7 +496,7 @@
             Purpose/Change: Added debug mode support
  
             .EXAMPLE
-            Log-Write -LogFullPath "C:\Windows\Temp\Test_Script.log" -LineValue "This is a new line which I am appending to the end of the log file."
+            #Log-Write -LogFullPath "C:\Windows\Temp\Test_Script.log" -LineValue "This is a new line which I am appending to the end of the log file."
             #>
   
           [CmdletBinding()]
@@ -552,7 +552,7 @@
             Purpose/Change: Added option to not exit calling script if required (via optional parameter)
  
             .EXAMPLE
-            Log-Finish -LogFullPath "C:\Windows\Temp\Test_Script.log" 
+            #Log-Finish -LogFullPath "C:\Windows\Temp\Test_Script.log" 
 
             #>
   
@@ -650,26 +650,26 @@
                      else {
                      # if not view only 
         
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp)"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp)"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): $('-' * 60)"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp):  Error Report"        
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp):"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Error in $($myError.InvocationInfo.ScriptName)."        
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp):"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Line Number: $($myError.InvocationInfo.ScriptLineNumber)"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Offset : $($myError.InvocationInfo.OffsetLine)"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Command: $($myError.invocationInfo.MyCommand)"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Line: $ErrorLine"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Error Details: $($myError)"
-                        Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Error Details: $($myError.InvocationInfo)"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp)"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp)"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): $('-' * 60)"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp):  Error Report"        
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp):"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Error in $($myError.InvocationInfo.ScriptName)."        
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp):"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Line Number: $($myError.InvocationInfo.ScriptLineNumber)"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Offset : $($myError.InvocationInfo.OffsetLine)"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Command: $($myError.invocationInfo.MyCommand)"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Line: $ErrorLine"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Error Details: $($myError)"
+                        #Log-Write -LogFullPath $mypath -LineValue "$(get-timestamp): Error Details: $($myError.InvocationInfo)"
                         if($Info) {
-                            Log-Write -LogFullPath $mypath -LineValue  "$(get-timestamp): More Custom Info: $info"
+                            #Log-Write -LogFullPath $mypath -LineValue  "$(get-timestamp): More Custom Info: $info"
                         }
 
                         if ($myError.Exception.InnerException) {
 
-                            Log-Write -LogFullPath $mypath -LineValue  "$(get-timestamp) :Error Inner Exception: $($myError.Exception.InnerException.Message)"
+                            #Log-Write -LogFullPath $mypath -LineValue  "$(get-timestamp) :Error Inner Exception: $($myError.Exception.InnerException.Message)"
             
                         }    
 
@@ -677,7 +677,7 @@
 
                } # End Process
 
-        } # function Write-CorpError
+        } # function #Write-CorpError
 
 
         function Test-corpIsWsman{
@@ -1816,7 +1816,7 @@
 
             #region defining variables
 
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering Get-CorpDagMemberList function with DAG name : $($DatabaseAvailabilityGroup.ToUpper())"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering Get-CorpDagMemberList function with DAG name : $($DatabaseAvailabilityGroup.ToUpper())"
 
                 $DatabaseAvailabilityGroup_Members = @()
 
@@ -1830,9 +1830,9 @@
                 $DatabaseAvailabilityGroup_Members_List = $DatabaseAvailabilityGroup_Members |foreach{$_.name}
 
                 #region Log Info 
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpDagMemberList] Info : DAG $DatabaseAvailabilityGroup : number of members returned : $($DatabaseAvailabilityGroup_Members_List.count)"    
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpDagMemberList] Info : DAG $DatabaseAvailabilityGroup : number of members returned : $($DatabaseAvailabilityGroup_Members_List.count)"    
                 foreach ($var in $DatabaseAvailabilityGroup_Members_List) {
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpDagMemberList] Info : DAG Member Name : $var "    
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpDagMemberList] Info : DAG Member Name : $var "    
 
 
                 }
@@ -1841,11 +1841,11 @@
 
 
             }catch {
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpDagMemberList] Error DAG $DatabaseAvailabilityGroup : fails Get-DatabaseAvailabilityGroup command. Skipping $($DatabaseAvailabilityGroup.ToUpper())"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpDagMemberList] Error DAG $DatabaseAvailabilityGroup : fails Get-DatabaseAvailabilityGroup command. Skipping $($DatabaseAvailabilityGroup.ToUpper())"
                 $DatabaseAvailabilityGroup_Members_List = $null
             }    
         
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting Get-CorpDagMemberList function with DAG name : $DatabaseAvailabilityGroup"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting Get-CorpDagMemberList function with DAG name : $DatabaseAvailabilityGroup"
 
             Write-Output $DatabaseAvailabilityGroup_Members_List
 
@@ -1867,7 +1867,7 @@
                 try{
                     $wmi = get-WmiObject win32_service -ComputerName $Server -ErrorAction Stop 
                 }catch {
-                    Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):[_GetExchServiceHealth] Error : Cannot get Service health from $Server using get-WmiObject win32_service ... Skipping"
+                    #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):[_GetExchServiceHealth] Error : Cannot get Service health from $Server using get-WmiObject win32_service ... Skipping"
                 }        
      
              }else {
@@ -1875,7 +1875,7 @@
                 try{
                     $wmi = Get-CorpCimInfo -class win32_service -ComputerName $Server -ErrorAction Stop 
                 }catch{
-                 Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):[_GetExchServiceHealth] Error : Cannot get Service health from $Server using Get-CorpCimInfo -class win32_service ... Skipping"
+                 #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):[_GetExchServiceHealth] Error : Cannot get Service health from $Server using Get-CorpCimInfo -class win32_service ... Skipping"
                  }
      
              } # if(!$UsePSRemote)
@@ -2030,7 +2030,7 @@
                         } #end try
 
                         catch {
-                            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [Get-CorpUpTime] Error : $computer - fail to get Up Time information, returning N/A"
+                            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [Get-CorpUpTime] Error : $computer - fail to get Up Time information, returning N/A"
 
 
                             #Write-Verbose -Message "Computer : $computer - fail to get information, returning n/a"
@@ -2091,8 +2091,8 @@
                         }
                     } 
 
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Directory to look at attachment $ScriptFilesPath"
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Files to attached count = $($files.count)"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Directory to look at attachment $ScriptFilesPath"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Files to attached count = $($files.count)"
                 #endregion files inventory
 
 
@@ -2124,17 +2124,17 @@
 
                                 $file = $files[$i]
                                 $file = Join-Path $ScriptFilesPath $file
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - File  = $file "
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - File  = $file "
                                 $attachment = new-object Net.Mail.Attachment($file)
                                 $msg.Attachments.Add($attachment)
 
                             }catch {
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - Error attaching File : $file "
-                                Write-CorpError -myError $_  -Info "[Module Final Tasks - Fail attaching file" -mypath $ErrorFullPath
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - Error attaching File : $file "
+                                #Write-CorpError -myError $_  -Info "[Module Final Tasks - Fail attaching file" -mypath $ErrorFullPath
                             }
                         }
                     } else {
-                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - No files to attach "
+                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - No files to attach "
                         
                     }
 
@@ -2146,10 +2146,10 @@
                     try{
                         $smtp = new-object Net.Mail.SmtpClient($smtphost)
                         $smtp.Send($msg)
-                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Email Sent to $to"
+                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Email Sent to $to"
                     }catch {
-                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Fail to send email... check Error log"
-                        Write-CorpError -myError $_  -Info "[Module Final Tasks - Could not send email" -mypath $ErrorFullPath
+                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Fail to send email... check Error log"
+                        #Write-CorpError -myError $_  -Info "[Module Final Tasks - Could not send email" -mypath $ErrorFullPath
                         _status "      Could not send email... check Info log for detials" 2 
                     }
 
@@ -2291,8 +2291,8 @@
 
              param ($ExchangeServersList)
 
-             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering Get-CorpIntersectDags function"
-             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpIntersectDags] Getting all DAGs using Get-DatabaseAvailabilityGroup and see if each of[ExchangeServersList] variable belongs to it "
+             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering Get-CorpIntersectDags function"
+             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpIntersectDags] Getting all DAGs using Get-DatabaseAvailabilityGroup and see if each of[ExchangeServersList] variable belongs to it "
  
              $Output_Obj = @()
              $AllDAGs = @()
@@ -2331,20 +2331,20 @@
 
                     if($Output_Obj.count -eq 0) {
 
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpIntersectDags] the input servers does not belong to a DAG "
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpIntersectDags] the input servers does not belong to a DAG "
 
 
                     }else {
                         foreach ($var in $Output_Obj) {
 
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpIntersectDags] ExchangeServersList belong to this DAG : $var "
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpIntersectDags] ExchangeServersList belong to this DAG : $var "
 
                         }
                     }
 
                     #endregion Log Info 
 
-                           Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpIntersectDags] +++++++Exiting Get-CorpIntersectDags function "
+                           #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Get-CorpIntersectDags] +++++++Exiting Get-CorpIntersectDags function "
 
                     Write-Output ($Output_Obj |Get-Unique)
 
@@ -2377,7 +2377,7 @@
                                   try {
                                     $myExchangeServers = [array](Get-ExchangeServer $ServerFilter -ErrorAction Stop) 
                                   }catch {
-                                    Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error :(Get-ExchangeServer) with ServerFilter : ""$($ScriptFilter)"""
+                                    #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error :(Get-ExchangeServer) with ServerFilter : ""$($ScriptFilter)"""
                                     throw " [_parameterGetExch] Error :(Get-ExchangeServer) with ServerFilter : ""$($ScriptFilter)"""
                               
 
@@ -2385,7 +2385,7 @@
                           
                                   if (!$myExchangeServers) {
         
-	                                    Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error :No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
+	                                    #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error :No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
                                         throw "[_parameterGetExch] Error: No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
                                    }
 
@@ -2425,7 +2425,7 @@
                                         $myExchangeServers += $var_Srv
    
                                     }catch {
-                                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error : Server $inputServer fails Get-ExchangeServer Command. Skipping"
+                                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error : Server $inputServer fails Get-ExchangeServer Command. Skipping"
                                         Write-Verbose -Message "[_parameterGetExch] Error :Server $inputServer fails Get-ExchangeServer Command. Skipping"
 
                                     }
@@ -2436,7 +2436,7 @@
 
                                 if (!$myExchangeServers) {
         
-	                                    Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error:No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
+	                                    #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error:No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
 
                                         throw "[_parameterGetExch] Error : No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
                                    }
@@ -2455,7 +2455,7 @@
                                         $myExchangeServers += $var
    
                                     }catch {
-                                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error : Server $inputServer fails Get-ExchangeServer Command. Skipping"
+                                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error : Server $inputServer fails Get-ExchangeServer Command. Skipping"
                                         Write-Verbose -Message "[_parameterGetExch] Error :Server $inputServer fails Get-ExchangeServer Command. Skipping"
 
                                     }
@@ -2465,7 +2465,7 @@
 
                                 if (!$myExchangeServers) {
         
-	                                    Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error : No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
+	                                    #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [_parameterGetExch] Error : No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
 
                                         throw "[_parameterGetExch] Error : No Exchange Servers matched by -ServerFilter ""$($ScriptFilter)"""
                                    }
@@ -2634,7 +2634,7 @@
                                 }
                                 Catch {
                                     Write-Verbose -Message "[_parameterGetDAG] Error: DAG $InputDAG : fails Get-DatabaseAvailabilityGroup Command. Skiping it"
-                                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_parameterGetDAG] Error :DAG $InputDAG : fails Get-DatabaseAvailabilityGroup Command. Skiping it"
+                                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_parameterGetDAG] Error :DAG $InputDAG : fails Get-DatabaseAvailabilityGroup Command. Skiping it"
                                 }
 
 
@@ -2671,8 +2671,8 @@
 	        param($ExchangeEnvironment)
 	    
             #region log info
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _TotalsByVersion function"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _TotalsByVersion function"
             #endregion log info 
 
 
@@ -2718,8 +2718,8 @@
 	        param($ExchangeEnvironment)
 	    
             #region log info
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _TotalsByRole function"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _TotalsByRole function"
             #endregion log info
 
             # Add Roles We Always Show
@@ -2774,10 +2774,10 @@
 	        param($DAG)
 
             #region log info
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):-------------------"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):  -DAG Name : $($DAG.Name.ToUpper())"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):  -MemberCount $($DAG.Servers.Count)"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):-------------------"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):-------------------"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):  -DAG Name : $($DAG.Name.ToUpper())"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):  -MemberCount $($DAG.Servers.Count)"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):-------------------"
         
 
             #endregion log info
@@ -2800,8 +2800,8 @@
         
         
             #region log info
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _GetExSvrs function with Server : $($ExchangeServer.name) and UsePSRemote value : $UsePSRemote"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _GetExSvrs function with Server : $($ExchangeServer.name) and UsePSRemote value : $UsePSRemote"
             #endregion log info 
 
 
@@ -2829,7 +2829,7 @@
                         $tWMI = Get-WmiObject Win32_OperatingSystem -ComputerName $ExchangeServer.Name -ErrorAction Stop
                         $tWMI_test = $tWMI
                     }catch {
-                        Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) for O.S Info (Get-WmiObject Win32_OperatingSystem) "
+                        #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) for O.S Info (Get-WmiObject Win32_OperatingSystem) "
                     }
 
                 }# if (!$UsePSRemote)
@@ -2840,7 +2840,7 @@
                         $tWMI = Get-CorpCimInfo -Class Win32_OperatingSystem $ExchangeServer.Name -ErrorAction Stop
                         $tWMI_test = $tWMI
                     }catch{
-                        Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) for O.S Info (Get-CorpCimInfo -Class Win32_OperatingSystem) "
+                        #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) for O.S Info (Get-CorpCimInfo -Class Win32_OperatingSystem) "
                     }
                 }
 
@@ -2876,7 +2876,7 @@
                         try {
                             $tWMI=Get-WmiObject -query "Select * from Win32_Volume" -ComputerName $ExchangeServer.Name -ErrorAction Stop
                         }catch {
-                            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) for Disk Info (Get-WmiObject -query ""Select * from Win32_Volume"")"                    
+                            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) for Disk Info (Get-WmiObject -query ""Select * from Win32_Volume"")"                    
                         } # if (!$UsePSRemote)
             
                      }
@@ -2885,7 +2885,7 @@
                         try {
                             $tWMI = Get-CorpCimInfo -Query "Select * from Win32_Volume" -Computername $ExchangeServer.Name -ErrorAction Stop
                         }catch {
-                            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) for Disk Info (Get-CorpCimInfo -Query ""Select * from Win32_Volume"")"
+                            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) for Disk Info (Get-CorpCimInfo -Query ""Select * from Win32_Volume"")"
                         }
 
                      } #else
@@ -2906,9 +2906,9 @@
 
             else { #$tWMI_test = $false
                     
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Skipping Exchange Service Health info "
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Skipping Server Up Time info "
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Skipping Server Disk Info "
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Skipping Exchange Service Health info "
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Skipping Server Up Time info "
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Skipping Server Disk Info "
 
                 $OSVersion = "N/A"
 		        $OSServicePack = "N/A"
@@ -3021,7 +3021,7 @@
                                             } #if ($RemoteRegistry) 
 
                                             else {#else if ($RemoteRegistry)
-			                                     Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) using remote registry (Rollup update info)"
+			                                     #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) using remote registry (Rollup update info)"
                                                  $RollupLevel = 0
                                                  $RollupVersion = $null
 		                                    }#else if ($RemoteRegistry)
@@ -3030,7 +3030,7 @@
 
                                     }#try
 		                            catch{ 
-                                         Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) using remote registry (Rollup update info)"
+                                         #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) using remote registry (Rollup update info)"
                                     } 
                                     finally {
                                         $ErrorActionPreference =$var
@@ -3039,7 +3039,7 @@
                                 }# if ($tWMI_test)
 
                                 else {#if (twmi_Test)
-                                    Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) using remote registry (Rollup update info)"
+                                    #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) using remote registry (Rollup update info)"
                                     $RollupLevel = 0
                                     $RollupVersion = $null
                                 }
@@ -3073,7 +3073,7 @@
                                         $ExchangeSPLevel = 0;
                                     }
                                 } else {
-                                    Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot detect CU/SP via Remote Registry for $($ExchangeServer.Name)"
+                                    #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot detect CU/SP via Remote Registry for $($ExchangeServer.Name)"
                                     $ExchangeSPLevel = 0
 			      
 		                        }
@@ -3081,7 +3081,7 @@
                         #endregion if remoteregistry
 
                     }catch{ 
-                         Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) using remote registry (Rollup update info)"
+                         #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot connect to $($ExchangeServer.name) using remote registry (Rollup update info)"
                          $ExchangeSPLevel = 0
 
                     } finally {
@@ -3092,7 +3092,7 @@
                 } # if ($tWMI_test) 
                 else {
                     $ExchangeSPLevel = 0
-                    Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Skipping detecting CU/SP via Remote Registry for $($ExchangeServer.Name) because WMI connectivity is not available"
+                    #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Skipping detecting CU/SP via Remote Registry for $($ExchangeServer.Name) because WMI connectivity is not available"
                 }
 
 		
@@ -3126,7 +3126,7 @@
 		            {
 			            if ($tWMI.IsFrontEndServer) { $Roles=@("FE") } else { $Roles=@("BE") }
 		            } else {
-                        Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot detect Front End/Back End Server information via WMI for $($ExchangeServer.Name)"
+                        #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot detect Front End/Back End Server information via WMI for $($ExchangeServer.Name)"
 			        
 			            $Roles+="Unknown"
 		            }
@@ -3140,7 +3140,7 @@
 		            {
 			            $MailboxStatistics = $tWMI | Select @{Name="DisplayName";Expression={$_.MailboxDisplayName}},@{Name="TotalItemSizeB";Expression={$_.Size}},@{Name="TotalDeletedItemSizeB";Expression={$_.DeletedMessageSizeExtended }},@{Name="Database";Expression={((get-mailboxdatabase -Identity "$($_.ServerName)\$($_.StorageGroupName)\$($_.StoreName)").identity)}}
 		            } else {
-                        Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot retrieve Mailbox Statistics via WMI for $($ExchangeServer.Name)"
+                        #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot retrieve Mailbox Statistics via WMI for $($ExchangeServer.Name)"
 
 			        
 			            $MailboxStatistics = $null
@@ -3157,7 +3157,7 @@
 		            {
 			            if ($tADSI.ServerRole -eq 1) { $Roles=@("FE") } else { $Roles=@("BE") }
 		            } else {
-			            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot detect Front End/Back End Server information via ADSI for $($ExchangeServer.Name)"
+			            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): [_GetExSvr] Error : Cannot detect Front End/Back End Server information via ADSI for $($ExchangeServer.Name)"
 
 			            $Roles+="Unknown"
 		            }
@@ -3219,26 +3219,26 @@
             
 
             #region Log Info 
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Name : $($ExchangeServer.Name.ToUpper())"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - RealName :$RealName"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExchangeMajorVersion : $ExchangeMajorVersion "
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExchangeSPLevel : $ExchangeSPLevel"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Edition :$($ExchangeServer.Edition)"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Mailboxes (count) : $MailboxCount"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - OSVersion : $OSVersion"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - OSServicePack : $OSServicePack"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Roles : $Roles"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - RollupLevel : $RollupLevel"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - RollupVersion : $RollupVersion"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Site: $($ExchangeServer.Site.Name)"            
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - IntNames : $IntNames"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExtNames : $ExtNames"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - CASArrayName : $CASArrayName"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExServicesHealth : $ExServicesHealth"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExServicesFailCount : $ExServicesFailCount"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExUpTime  : $ExUpTime "
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DBCopies  : $DBCopyCount "
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DBsMounted  : $DBs_MountedCount "
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Name : $($ExchangeServer.Name.ToUpper())"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - RealName :$RealName"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExchangeMajorVersion : $ExchangeMajorVersion "
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExchangeSPLevel : $ExchangeSPLevel"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Edition :$($ExchangeServer.Edition)"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Mailboxes (count) : $MailboxCount"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - OSVersion : $OSVersion"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - OSServicePack : $OSServicePack"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Roles : $Roles"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - RollupLevel : $RollupLevel"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - RollupVersion : $RollupVersion"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Site: $($ExchangeServer.Site.Name)"            
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - IntNames : $IntNames"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExtNames : $ExtNames"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - CASArrayName : $CASArrayName"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExServicesHealth : $ExServicesHealth"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExServicesFailCount : $ExServicesFailCount"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ExUpTime  : $ExUpTime "
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DBCopies  : $DBCopyCount "
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DBsMounted  : $DBs_MountedCount "
             #endregion Log Info 
 	
 
@@ -3278,8 +3278,8 @@
 	
 	    
             #region log info
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _GetDB function with DB : ""$($Database.name)"" and E2010 value : $E2010"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _GetDB function with DB : ""$($Database.name)"" and E2010 value : $E2010"
             #endregion log info 
 
 
@@ -3492,7 +3492,7 @@
 	        } else {
 		        $FreeLogDiskSpace=$null
 		        $FreeDatabaseDiskSpace=$null
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): Skipping Disk Info because getting WMI info from server failed previously"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): Skipping Disk Info because getting WMI info from server failed previously"
             
 	        }
 	
@@ -3550,7 +3550,7 @@
 		        if (!$Size)
 		        {
 			    
-                    Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): Cannot detect database size via WMI for $($Database.Server.Name)"
+                    #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): Cannot detect database size via WMI for $($Database.Server.Name)"
 			        [long]$Size = 0
 			        [long]$Whitespace = 0
 		        } else {
@@ -3603,32 +3603,32 @@
         
             #region log info
 
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Name : $($Database.Name.ToUpper())"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - StorageGroup : $StorageGroup "
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ActiveOwner : $ActiveOwner"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Mailboxcount : $dbMailboxcount"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - MailboxAverageSize	: $($MailboxAverageSize / 1MB) MB"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ArchiveMailboxCount : $ArchiveMailboxCount"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ArchiveTotalSize : $($ArchiveItemSizeB / 1MB) MB"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ArchiveAverageSize : $($ArchiveAverageSize  / 1MB) MB"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - CircularLoggingEnabled : $CircularLoggingEnabled"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - LastFullBackup	: $LastFullBackup"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Size : $($Size / 1GB) GB"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Whitespace : $($Whitespace / 1MB) MB"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Copies : $($Copies | % { $_})"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - CopyCount : $CopyCount"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - FreeLogDiskSpace : $FreeLogDiskSpace %"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - FreeDatabaseDiskSpace : $FreeDatabaseDiskSpace %"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DBPreCheck : $DatabasePreCheck"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - HowOldBackup : $HowOldBackup Days"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabaseDumpsterWQ : $DatabaseDumpsterWQ MB"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabaseDumpsterQ : $DatabaseDumpsterQ MB"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabasePS (Prohibit Send) : $DatabasePS GB "
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabasePSR (Prohibit Send and Rec) : $DatabasePSR GB"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Mounted : $Mounted"        
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabasePereferredServer : $DatabasePereference"
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - IsRecovery : $($Database.Recovery)"        
-            Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabaseDagMembership : $DatabaseDagMembership"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Name : $($Database.Name.ToUpper())"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - StorageGroup : $StorageGroup "
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ActiveOwner : $ActiveOwner"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Mailboxcount : $dbMailboxcount"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - MailboxAverageSize	: $($MailboxAverageSize / 1MB) MB"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ArchiveMailboxCount : $ArchiveMailboxCount"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ArchiveTotalSize : $($ArchiveItemSizeB / 1MB) MB"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - ArchiveAverageSize : $($ArchiveAverageSize  / 1MB) MB"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - CircularLoggingEnabled : $CircularLoggingEnabled"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - LastFullBackup	: $LastFullBackup"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Size : $($Size / 1GB) GB"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Whitespace : $($Whitespace / 1MB) MB"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Copies : $($Copies | % { $_})"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - CopyCount : $CopyCount"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - FreeLogDiskSpace : $FreeLogDiskSpace %"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - FreeDatabaseDiskSpace : $FreeDatabaseDiskSpace %"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DBPreCheck : $DatabasePreCheck"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - HowOldBackup : $HowOldBackup Days"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabaseDumpsterWQ : $DatabaseDumpsterWQ MB"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabaseDumpsterQ : $DatabaseDumpsterQ MB"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabasePS (Prohibit Send) : $DatabasePS GB "
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabasePSR (Prohibit Send and Rec) : $DatabasePSR GB"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - Mounted : $Mounted"        
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabasePereferredServer : $DatabasePereference"
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - IsRecovery : $($Database.Recovery)"        
+            #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): - DatabaseDagMembership : $DatabaseDagMembership"
 
             #endregion log info
 	
@@ -4971,7 +4971,7 @@
                          try{
                             $chart.SaveImage($filepath, "PNG")
                         }catch {
-                            Write-CorpError -myError $_ -mypath $ErrorFullPath -Info "[Module 6 Charts : Failed to save chart at $filepath"
+                            #Write-CorpError -myError $_ -mypath $ErrorFullPath -Info "[Module 6 Charts : Failed to save chart at $filepath"
                         }
                         finally {
                         $ErrorActionPreference = $var
@@ -5005,7 +5005,7 @@
     try{
         $ScriptFilesPath = Convert-Path $ScriptFilesPath -ErrorAction Stop
     }catch {
-        Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Validating log files path] Sorry, please check the sript path name again"
+        #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Validating log files path] Sorry, please check the sript path name again"
         Exit
         throw " [Module Factory - Creating files] Validating log files path] Sorry, please check the sript path name again "
     }
@@ -5018,7 +5018,7 @@
 
             }catch {
 
-                Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old working directory] Could not delete directory $ScriptFilesPath"
+                #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old working directory] Could not delete directory $ScriptFilesPath"
                 Exit
                 throw "[Module Factory - Deleting old working directory] Could not delete directory $ScriptFilesPath "
 
@@ -5030,7 +5030,7 @@
         try {
             #New-Item -ItemType directory -Path $ScriptFilesPath -ErrorAction Stop
         }catch{
-            Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating working directory] Could not delete directory $ScriptFilesPath"
+            #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating working directory] Could not delete directory $ScriptFilesPath"
             Exit
             throw "[Module Factory - Creating working directory] Could not delete directory $ScriptFilesPath "
 
@@ -5050,7 +5050,7 @@
                 $ErrorLogFile = "ExReportError.log"    
                 $ErrorFullPath = Join-Path $ScriptFilesPath  $ErrorLogFile -ErrorAction Stop
             }catch {
-                Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Validating log files] Sorry, please check the sript path name again"
+                #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Validating log files] Sorry, please check the sript path name again"
                 Exit
                 throw " [Module Factory - Creating files] Sorry, please check the sript path name again "
 
@@ -5062,7 +5062,7 @@
                 try {
                 #Remove-Item -Path $ErrorFullPath  -Force -ErrorAction Stop
                 }catch {
-                    Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old log files]"
+                    #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old log files]"
                     Exit
                     throw " [Module Factory - Creating files] Sorry, but the script could not delete log file on $ErrorFullPath "
                 }
@@ -5074,14 +5074,14 @@
                 #New-Item -Path $ScriptFilesPath -Name $ErrorLogFile –ItemType File -ErrorAction Stop
             }
             catch {
-                 Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
+                 #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
                  Exit
                 throw "  [Module Factory - Creating files] Sorry, but the script could not create log file on $ScriptFilesPath [Module 3 Factory - Creating files] "
             }
 
             #initiate error log file
 
-            Log-Start -LogFullPath $ErrorFullPath
+            #Log-Start -LogFullPath $ErrorFullPath
 
             #Write-verbose -Message "[Module Factory] : Error Log File created $ErrorFullPath"
 
@@ -5093,7 +5093,7 @@
                 $InfoLogFile = "ExReportInfo.log"    
                 $InfoFullPath =  Join-Path $ScriptFilesPath  $InfoLogFile -ErrorAction Stop
             }catch{
-                Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Validating log files] Sorry, please check the sript path name again"
+                #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Validating log files] Sorry, please check the sript path name again"
                 Exit
                 throw " [Module Factory - Creating files] Sorry, please check the sript path name again "
 
@@ -5104,7 +5104,7 @@
                 try {
                     Remove-Item -Path $InfoFullPath  -Force -ErrorAction Stop
                 }catch {
-                    Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old log files]"
+                    #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old log files]"
                     Exit
                     throw "[Module Factory] : Sorry, but the script could not delete log file on $InfoFullPath [Module 3 Factory - Creating files] "
                 }
@@ -5115,7 +5115,7 @@
                 #New-Item -Path $ScriptFilesPath -Name $InfoLogFile –ItemType File -ErrorAction Stop
             }
             catch {
-                 Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
+                 #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
                  Exit                 
                  throw "[Module Factory] : Sorry, but the script could not delete log file on $ScriptFilesPath [Module 3 Factory - Creating files] "
             }
@@ -5123,7 +5123,7 @@
            
             #initiate error log file
 
-             Log-Start -LogFullPath $InfoFullPath
+             #Log-Start -LogFullPath $InfoFullPath
 
              Write-verbose -Message "[Module Factory] : Error Log File created $InfoLogFile"
             
@@ -5138,7 +5138,7 @@
             try {
                 $DetailedFullPath =  Join-Path $ScriptFilesPath  $DetailedLogFile -ErrorAction Stop
             }catch {
-                Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Validating log files] Sorry, please check the sript path name again"
+                #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Validating log files] Sorry, please check the sript path name again"
                 Exit
 
             }
@@ -5149,7 +5149,7 @@
                 try {
                 Remove-Item -Path $DetailedFullPath  -Force -ErrorAction Stop
                 }catch {
-                     Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old log files]"
+                     #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old log files]"
                      Exit
                      throw " [Module Factory - Creating files] Sorry, but the script could not delete log file on $DetailedFullPath "
                 }
@@ -5161,14 +5161,14 @@
                 #New-Item -Path $ScriptFilesPath -Name $DetailedLogFile –ItemType File -ErrorAction Stop
             }
             catch {
-                 Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
+                 #Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
                  Exit                
                 throw "  [Module Factory - Creating files] Sorry, but the script could not create log file on $ScriptFilesPath [Module 3 Factory - Creating files] "
             }
 
             #initiate error log file
 
-            Log-Start -LogFullPath $DetailedFullPath
+            #Log-Start -LogFullPath $DetailedFullPath
 
             Write-verbose -Message "[Module Factory] : Error Log File created $DetailedFullPath"
 
@@ -5181,40 +5181,40 @@
         
             
             
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Info log file $($InfoFullPath) is created successfully"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Error log file $($ErrorFullPath) is created successfully"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Detailed log file $($DetailedFullPath) is created successfully"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Info log file $($InfoFullPath) is created successfully"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Error log file $($ErrorFullPath) is created successfully"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Detailed log file $($DetailedFullPath) is created successfully"
 
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Starting $($MyInvocation.Mycommand)"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): ($PSBoundParameters | out-string)"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Starting $($MyInvocation.Mycommand)"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): ($PSBoundParameters | out-string)"
         
         if($PSVersionTable.PSVersion.major){
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): PowerShell Host Version :$($PSVersionTable.PSVersion.major)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): PowerShell Host Version :$($PSVersionTable.PSVersion.major)"
         }
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 1 Customization] : Pass"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 3 Function] : Pass"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 1 Customization] : Pass"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 3 Function] : Pass"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
  
     #endregion initial log info
 
     #region Section 3.2 : Initial preperation
 
         Write-Progress -id 1 -activity "Get-ExchangeOrgReport" -status "Phase 1 of 6 : Preperation Tasks" -percentComplete 10
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module Factory]"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module Factory]"
 
         #region 3.1.1 Start StopWatch
 
             #Start stop watch
             # This is to report the time it takes to run the script.
             $Watch  =  [System.Diagnostics.Stopwatch]::StartNew()
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Starting script stopwatch"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Starting script stopwatch"
 
         #endregion 3.1.2 Start StopWatch
 
@@ -5227,7 +5227,7 @@
 
             _screenheadings
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Clearing the console screen and displaying script headings"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Clearing the console screen and displaying script headings"
 
             _status " 1. Preparation Tasks" 1 
 
@@ -5239,7 +5239,7 @@
             
             _status "    1.1 Checking PowerShell environment" 2
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Checking Script PowerShell Environment"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Checking Script PowerShell Environment"
 
             # Quote : Script block taken from Steve's script
 
@@ -5247,7 +5247,7 @@
 
                     if ((Get-Host).Version.Major -eq 1)
                     {
-	                    Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [Module Factory] Powershell Version 1 not supported : if ((Get-Host).Version.Major -eq 1)"
+	                    #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [Module Factory] Powershell Version 1 not supported : if ((Get-Host).Version.Major -eq 1)"
                         
                         throw "Powershell Version 1 not supported";
                     }
@@ -5257,7 +5257,7 @@
                         # Sometime it is tricky to load Exchange Management Shell specially if Exchange was installed on a drive other than the C drive.
                         #So we will get the Exchange Installation Path
                         [string]$Exch_InstallPath = $env:exchangeinstallpath
-                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):    - Exchange Install Directory : $Exch_InstallPath "
+                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):    - Exchange Install Directory : $Exch_InstallPath "
                         $Exch_InstallDrive = $Exch_InstallPath.Substring(0,3)                         
                         $loadscript1 = Join-Path $Exch_InstallDrive "Program Files\Microsoft\Exchange Server\V14\bin\RemoteExchange.ps1"  
                         $loadscript2 = Join-Path $Exch_InstallDrive "Program Files\Microsoft\Exchange Server\bin\Exchange.ps1"   
@@ -5266,48 +5266,48 @@
 
                         if (!(Get-Command Get-ExchangeServer -ErrorAction SilentlyContinue)) {
                            
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):    - Exchange Commands not available.. trying to load Exchange PowerShell"
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):    - Exchange Commands not available.. trying to load Exchange PowerShell"
 
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load C:\Program Files\Microsoft\Exchange Server\V14\bin\RemoteExchange.ps1"
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load C:\Program Files\Microsoft\Exchange Server\V14\bin\RemoteExchange.ps1"
 	                        if (Test-Path "C:\Program Files\Microsoft\Exchange Server\V14\bin\RemoteExchange.ps1"){	  
                                 
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load C:\Program Files\Microsoft\Exchange Server\V14\bin\RemoteExchange.ps1"                              
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load C:\Program Files\Microsoft\Exchange Server\V14\bin\RemoteExchange.ps1"                              
                                 . 'C:\Program Files\Microsoft\Exchange Server\V14\bin\RemoteExchange.ps1'
 		                        Connect-ExchangeServer -auto
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
 
 	                        }  
                             
                             elseif (Test-Path "C:\Program Files\Microsoft\Exchange Server\bin\Exchange.ps1") {
-                               Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load C:\Program Files\Microsoft\Exchange Server\bin\Exchange.ps1"
+                               #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load C:\Program Files\Microsoft\Exchange Server\bin\Exchange.ps1"
 		                        Add-PSSnapIn Microsoft.Exchange.Management.PowerShell.Admin
 		                        .'C:\Program Files\Microsoft\Exchange Server\bin\Exchange.ps1'
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
 	                        }
                             
                             elseif (Test-Path $loadscript1 ) {	
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load $loadscript1"                        
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load $loadscript1"                        
 		                        . $loadscript1
 		                        Connect-ExchangeServer -auto
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
 	                        }
                             
                             elseif (Test-Path $loadscript2) {
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load $loadscript2"
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load $loadscript2"
 		                        Add-PSSnapIn Microsoft.Exchange.Management.PowerShell.Admin
 		                        . $loadscript2
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
 	                        }
                             
                             elseif (Test-Path $loadscript3 ) { #Exchange 2013	                        
-		                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load $loadscript3"
+		                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Trying to load $loadscript3"
                                 . $loadscript3
 		                        Connect-ExchangeServer -auto
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):       -- Works!"
 	                        }    
 
                             else {
-                                Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [Module Factory] Exchange Management Shell cannot be loaded"
+                                #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [Module Factory] Exchange Management Shell cannot be loaded"
 		                    
                                 throw "Exchange Management Shell cannot be loaded"                            
 	                        }
@@ -5320,7 +5320,7 @@
                         {
 	                        if (!$MailFrom -or !$MailTo -or !$MailServer)
 	                        {
-		                        Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [Module Factory] If -SendMail specified, you must also specify -MailFrom, -MailTo and -MailServer"
+		                        #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [Module Factory] If -SendMail specified, you must also specify -MailFrom, -MailTo and -MailServer"
 
                                 throw "If -SendMail specified, you must also specify -MailFrom, -MailTo and -MailServer"
 	                        }
@@ -5333,7 +5333,7 @@
 	                        if (Get-ExchangeServer | Where {$_.AdminDisplayVersion.Major -gt 14})
 	                        {
 		                        Write-Warning "Exchange 2010 or higher detected. You'll get better results if you run this script from an Exchange 2010/2013 management shell"
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module Factory] Exchange 2010 or higher detected. You'll get better results if you run this script from an Exchange 2010/2013 management shell"
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module Factory] Exchange 2010 or higher detected. You'll get better results if you run this script from an Exchange 2010/2013 management shell"
 
 	                        }
                         }else{
@@ -5354,14 +5354,14 @@
                             Write-Warning -Message " [Module Factory] `$Env:computername in this case evaluates to $($Env:computername)"
                             Write-Warning -Message " [Module Factory] Please run the script from an Exchange Server"
                             Write-Warning -Message " [Module Factory] Existing script"
-                            Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): You are not running the script from an Exchange Server"
-                            Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): The script logic cannot determine if PS version is E2013 or E2010"
-                            Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Knowing this info is so important to determine the command set to use"
-                            Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Command failing is (Get-ExchangeServer `$Env:computername) "
-                            Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): `$Env:computername in this case evaluates to $($Env:computername)"
-                            Log-Write -LogFullPath $ErrorFullPath-LineValue "$(get-timestamp): Please run the script from Exchange Server"
-                            Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Exiting script"
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Exiting script... Please check ErrorLog file for detail."
+                            #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): You are not running the script from an Exchange Server"
+                            #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): The script logic cannot determine if PS version is E2013 or E2010"
+                            #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Knowing this info is so important to determine the command set to use"
+                            #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Command failing is (Get-ExchangeServer `$Env:computername) "
+                            #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): `$Env:computername in this case evaluates to $($Env:computername)"
+                            #Log-Write -LogFullPath $ErrorFullPath-LineValue "$(get-timestamp): Please run the script from Exchange Server"
+                            #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Exiting script"
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Exiting script... Please check ErrorLog file for detail."
                             Write-Host -ForegroundColor Red "Terminating Script.. Pls check Error Log file for details"
                             Write-Host -ForegroundColor Red "Error Log File is : $ErrorFullPath "
                             Exit
@@ -5379,14 +5379,14 @@
                                 Write-Warning -Message " [Module Factory] `$Env:computername in this case evaluates to $($Env:computername)"
                                 Write-Warning -Message " [Module Factory] Please run the script from an Exchange Server"
                                 Write-Warning -Message " [Module Factory] Existing script"
-                                Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): You are not running the script from an Exchange Server"
-                                Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): The script logic cannot determine if PS version is E2013 or E2010"
-                                Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Knowing this info is so important to determine the command set to use"
-                                Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Command failing is (Get-ExchangeServer `$Env:computername) "
-                                Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): `$Env:computername in this case evaluates to $($Env:computername) "
-                                Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Please run the script from Exchange Server"
-                                Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Exiting"
-                                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Exiting script... Please check ErrorLog file for detail."
+                                #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): You are not running the script from an Exchange Server"
+                                #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): The script logic cannot determine if PS version is E2013 or E2010"
+                                #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Knowing this info is so important to determine the command set to use"
+                                #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Command failing is (Get-ExchangeServer `$Env:computername) "
+                                #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): `$Env:computername in this case evaluates to $($Env:computername) "
+                                #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Please run the script from Exchange Server"
+                                #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): Exiting"
+                                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Exiting script... Please check ErrorLog file for detail."
                                 Write-Host -ForegroundColor Red "Terminating Script.. Pls check Error Log file for details"
                                 Write-Host -ForegroundColor Red "Error Log File is : $ErrorFullPath "
                                 Exit
@@ -5405,7 +5405,7 @@
 	                        Set-ADServerSettings -ViewEntireForest:$ViewEntireForest 
                         } else {
 	                        $global:AdminSessionADSettings.ViewEntireForest = $ViewEntireForest
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module Factory] ViewEntireForest value is $ViewEntireForest"
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module Factory] ViewEntireForest value is $ViewEntireForest"
 
                         }
 
@@ -5418,9 +5418,9 @@
                         Write-Verbose -Message "Info: Value of E2013 Variable is $(if($E2013){$true}else{$false})"
 
                         
-                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Info: Value of E2010 Variable is $E2010"
-                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Info: Value of E2013 Variable is $(if($E2013){$true}else{$false})"
-                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Finish validating PowerShell environment"
+                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Info: Value of E2010 Variable is $E2010"
+                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Info: Value of E2013 Variable is $(if($E2013){$true}else{$false})"
+                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Finish validating PowerShell environment"
 
                         #endregion log info
 
@@ -5429,7 +5429,7 @@
 
                         if (!$E2010 -and ($ScriptFilter -like "DAGFilter") ) {
 
-                            Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [Module Factory] Error: You cannot use DAGFilter while running old version of PowerShell"
+                            #Log-Write -LogFullPath $ErrorFullPath -LineValue "$(get-timestamp): [Module Factory] Error: You cannot use DAGFilter while running old version of PowerShell"
                             throw "[Module Factory] Error: You cannot use DAGFilter while running old version of PowerShell"
 
                         }
@@ -5446,7 +5446,7 @@
 
     #region Section 3.2 : Global variables
         
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Creating Global Variables"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Creating Global Variables"
         
         _status "    1.2 Creating global variables" 2
        
@@ -5591,7 +5591,7 @@
                 "IncludeServerFilter" { $ScriptFilter = "IncludeServerFilter"; break}
             } 
             Write-Verbose -Message "Info : Script Parameter Set Name : $ScriptFilter"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Script Parameter Set Name is $ScriptFilter"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Script Parameter Set Name is $ScriptFilter"
 
 
         #endregion getting script parameter set
@@ -5601,11 +5601,11 @@
 
     #region Log Info 
              
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 3 Factory] : Pass"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 3 Factory] : Pass"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
 
     #endregion Log Info      
                    
@@ -5624,9 +5624,9 @@
 
     #region Log Info 
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 4 Process] : Starting"    
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 4 Process] : Starting"    
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
 
     #endregion Log Info 
 
@@ -5640,14 +5640,14 @@
             
             _status "     2.1 Get-ExchangeServer Info (with filter if any)" 2
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
             
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Get-ExchangeServer Info (with filter if any)"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering _parameterGetExch function"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Get-ExchangeServer Info (with filter if any)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering _parameterGetExch function"
 
             $ExchangeServers = [array](_parameterGetExch $ScriptFilter )
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting _parameterGetExch function"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting _parameterGetExch function"
 
             _status "         - Exchange Servers detected : $($ExchangeServers.count)" 3
 
@@ -5656,19 +5656,19 @@
             #region Log Info 
 
                 
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): ---- Script Filter Result----"
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Number of Exchange Servers detected : $($ExchangeServers.count) "
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): ---- Script Filter Result----"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Number of Exchange Servers detected : $($ExchangeServers.count) "
                 
 
                 foreach ($var in $ExchangeServersList) {
 
 
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Server : $var"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Server : $var"
 
                 }
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): ---- Script Filter Result----" 
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting _parameterGetExch function"
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): ---- Script Filter Result----" 
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting _parameterGetExch function"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
             
             #endregion Log Info 
      
@@ -5681,29 +5681,29 @@
 
             _status "     2.2 Get-MailboxDatabase -Status Info (with filter if any)" 2  
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Get-MailboxDatabase  Info (with filter if any)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Get-MailboxDatabase  Info (with filter if any)"
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering _parameterGetDBs function"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering _parameterGetDBs function"
             
                        
             $Databases =  [array](_parameterGetDBs $ScriptFilter $E2010 $E2013 $ServerFilter $ExchangeServersList) 
             _status "         - Databases : $($Databases.count)" 3
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Number of database detected : $($Databases.count) "
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Number of database detected : $($Databases.count) "
 
             if ($Databases.count) {
                 $DatabasesList = @($Databases | foreach{ $_.name})
 
                 foreach ($var in $DatabasesList) {
 
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): DB : $var"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): DB : $var"
 
                 }
             }
 
             #log info
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting _parameterGetDBs function"
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting _parameterGetDBs function"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
               
 
         #endregion Get-Mailboxdatabase - Status
@@ -5714,20 +5714,20 @@
     
             _status "     2.3 Get-RemoteMailbox Info" 2
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Get-RemoteMailbox Info"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Get-RemoteMailbox Info"
 
             if ($E2010) {
                 $RemoteMailboxes = @() 
                 $RemoteMailboxes = [array](Get-RemoteMailbox  -ResultSize Unlimited)
                 
                     _status "         - Remote Mailboxes : $($RemoteMailboxes.count)" 3
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Number of remote mailboxes detected : $($RemoteMailboxes.count)"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Number of remote mailboxes detected : $($RemoteMailboxes.count)"
                 
             }
             else {
                 Write-Verbose -Message " Info : Since the Exchange PowerShell Environment is less than 2010, RemoteMailboxes will be assigned 0"
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since the Exchange PowerShell Environment is less than 2010, RemoteMailboxes will be assigned 0"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since the Exchange PowerShell Environment is less than 2010, RemoteMailboxes will be assigned 0"
                 $RemoteMailboxes = $null
                 _status "         - Remote Mailboxes : 0" 3
             }             
@@ -5736,7 +5736,7 @@
             $GlobalAggregates.mailbox_total_Remote_count = $RemoteMailboxes.Count  
             
             
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"   
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"   
 
         #endregion Get-RemoteMailbox
 
@@ -5746,22 +5746,22 @@
 
              _status "     2.4 Get-Mailbox Info (with filter if any)" 2
 
-             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
-             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Get-Mailbox Info (with filter if any)"
+             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
+             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Get-Mailbox Info (with filter if any)"
 
               if ($Databases.count -gt 0) {                  
                   
                   $Mailboxes =  [array](_parameterGetMailboxes $Databases) 
                   
-                  Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Number of Mailboxes detected : $($Mailboxes.count)"         
+                  #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Number of Mailboxes detected : $($Mailboxes.count)"         
               
                }else {
-                   Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): since no databases are detected, Mailbox count = $($Mailboxes.count)"
+                   #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): since no databases are detected, Mailbox count = $($Mailboxes.count)"
                }
 
               
              _status "         - Mailboxes : $($Mailboxes.count)" 3
-             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
+             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
 
         #endregion Get-Mailbox
 
@@ -5770,29 +5770,29 @@
         #region Get-Mailbox -Archive
             _status "     2.5 Get-Mailbox -Archive Info (with filter if any)" 2
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section Get-Mailbox -Archive Info (with filter if any)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section Get-Mailbox -Archive Info (with filter if any)"
 
             if ($E2010) {
 
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Since E2010 variable is true..continue"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Since E2010 variable is true..continue"
 
                     if ($Databases.count -gt 0) {
                         $ArchiveMailboxes =  [array](_parameterGetArchiveMailboxes $DatabasesList)
-                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since databases.count is not 0..continue"
+                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since databases.count is not 0..continue"
                     }
                        
 
             }else {
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since E2010 variable is false : ArchiveMailboxes and ArchiveMailboxStats = null"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since E2010 variable is false : ArchiveMailboxes and ArchiveMailboxStats = null"
                     $ArchiveMailboxes = $null
                     $ArchiveMailboxStats = $null
             }
 
             _status "         - Archive mailboxes : $($ArchiveMailboxes.count)" 3
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Archive Mailboxes count = $($ArchiveMailboxes.count) "
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Archive Mailboxes count = $($ArchiveMailboxes.count) "
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
 
 
         #endregion Get-Mailbox -Archive
@@ -5803,29 +5803,29 @@
 
             _status "     2.6 Getting DAG Info  (with filter if any)" 2
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting DAG Info  (with filter if any)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting DAG Info  (with filter if any)"
 
             if ($E2010) {
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since E2010 variable is true..continue"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since E2010 variable is true..continue"
 
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering _parameterGetDAG function"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Entering _parameterGetDAG function"
 
                     $DAGs =  [array](_parameterGetDAG $ServerFilter $InputDAGs $ExchangeServersList)
 
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting_parameterGetDAG function"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): +++++++Exiting_parameterGetDAG function"
 
                     $Dag_Count = $DAGs.count
 
                     _status "         - DAGs : $Dag_Count" 3
 
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): DAG count = $($DAGs.count)"
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): DAG count = $($DAGs.count)"
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
             }else {
                 $DAGs = $null
                 _status "         - DAGs : 0" 3
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since E2010 variable is false..DAG Count and Info are Null"
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Since E2010 variable is false..DAG Count and Info are Null"
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp)"
             }               
 
     #endregion Get-DatabaseAvailabilityGroup
@@ -5855,8 +5855,8 @@
              Write-Verbose -Message ""
              Write-Verbose -Message " Info : Total Mailboxes = Local Mailboxes + Remote Mailboxes = $($ExchangeEnvironment.TotalMailboxes)"
              Write-Verbose -Message ""
-             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section Aggregates"
-             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Total Mailboxes = Local Mailboxes + Remote Mailboxes = $($ExchangeEnvironment.TotalMailboxes)"
+             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section Aggregates"
+             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Total Mailboxes = Local Mailboxes + Remote Mailboxes = $($ExchangeEnvironment.TotalMailboxes)"
 
          #endregion aggregates
      
@@ -5875,8 +5875,8 @@
 
             _status "     3.1 Getting Detailed information for each Exchange Server (count:$($ExchangeServers.Count) )" 2
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting Exchange Server structured data (_GetExSvr function)" 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting Exchange Server structured data (_GetExSvr function)" 
 
             # Quote : Script block taken from Steve's script
 
@@ -5890,7 +5890,7 @@
 
 	                # Get Exchange Info
 	                $ExSvr = _GetExSvr -E2010 $E2010 -ExchangeServer $ExchangeServers[$i] -Mailboxes $Mailboxes -Databases $Databases $UsePSRemote
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_GetExSvr function]) Processing $($ExchangeServers[$i])  "
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_GetExSvr function]) Processing $($ExchangeServers[$i])  "
 
 	                # Add to site or pre-Exchange 2007 list
 	                if ($ExSvr.Site)
@@ -5928,8 +5928,8 @@
         
              _status "     3.2 Getting Total servers by role and mailboxes by version" 2
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting Total servers by role and mailboxes by version"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting Total servers by role and mailboxes by version"
 
              # Quote : Script block taken from Steve's script
      
@@ -5949,17 +5949,17 @@
             
             _status "     3.3 Getting DAG Info" 2
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting DAG Info (_GetDAG function)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting DAG Info (_GetDAG function)"
 
             if ($DAGs) {
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
-                Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _GetDAG function"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp):"
+                #Log-Write -LogFullPath $DetailedFullPath -LineValue "$(get-timestamp): +++++++Entering _GetDAG function"
         
 	            foreach($DAG in $DAGs)
 	            {
 		            $ExchangeEnvironment.DAGs+=(_GetDAG -DAG $DAG)
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_GetDAG function] : Processing $($DAG.Name.ToUpper()) "
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [_GetDAG function] : Processing $($DAG.Name.ToUpper()) "
                     _status "         - Getting DAG Info: $($DAG.Name.ToUpper())" 3
 	            }
             }
@@ -5983,8 +5983,8 @@
             
             #region loginfo
             _status "     3.4 Getting DB Info (count:$($Databases.Count))" 2
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting DB Info (_GetDB function)"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting DB Info (_GetDB function)"
             #endregion log info
 
             #region variables
@@ -6011,8 +6011,8 @@
                     # we use this variable when we query our DAG databases and compare it with the database in the loop.
                     $DAGDB = $false 
                     
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): ---------- "
-                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Processing $($Databases[$i].Name.ToUpper()) via _GetDB function "
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): ---------- "
+                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Processing $($Databases[$i].Name.ToUpper()) via _GetDB function "
                     Write-Host "$($Databases[$i].Name).." -NoNewline
                    
                     $DatabaseObj = _GetDB -Database $Databases[$i] -ExchangeEnvironment $ExchangeEnvironment -Mailboxes $Mailboxes -ArchiveMailboxes $ArchiveMailboxes -E2010 $E2010
@@ -6025,7 +6025,7 @@
                         If (($DatabaseObj.IsRecovery) -eq $true) {                           
 
                             $ExchangeEnvironment.RecoveryDatabases += $DatabaseObj
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - $($Databases[$i].Name.ToUpper()) is a recovery DB "
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - $($Databases[$i].Name.ToUpper()) is a recovery DB "
                         } 
 
                     #endregion if the DB is recovery database 
@@ -6050,7 +6050,7 @@
 
 			                        $ExchangeEnvironment.DAGs[$j].Databases += $DatabaseObj
 
-                                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - $($Databases[$i].Name.ToUpper()) is member of DAG : $($ExchangeEnvironment.DAGs[$j].Name.ToUpper()) "
+                                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - $($Databases[$i].Name.ToUpper()) is member of DAG : $($ExchangeEnvironment.DAGs[$j].Name.ToUpper()) "
 		                        }
 
 	                        } # or ($j=0; $j -lt $ExchangeEnvironment.DAGs.Count; $j++)
@@ -6060,7 +6060,7 @@
 	
 		                        $ExchangeEnvironment.NonDAGDatabases += $DatabaseObj
                                 
-                                 Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - $($Databases[$i].Name.ToUpper()) is a Non Recovery, Non DAG Database"
+                                 #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):     - $($Databases[$i].Name.ToUpper()) is a Non Recovery, Non DAG Database"
 
 	                        }
 
@@ -6106,8 +6106,8 @@
         #region log info
             Write-host " " 
             _status "     3.5 Calculating Aggregate information" 2
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting Total Aggregates"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Section : Getting Total Aggregates"
        #endregion log info
         
        
@@ -6130,10 +6130,10 @@
         $ExchangeEnvironment.Add("DBSizes",$GlobalAggregates.DBSizes)        
          
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Total Archives Count: $($ExchangeEnvironment.TotalArchivesCount) "
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Total Archives Size: $($ExchangeEnvironment.TotalArchivesSize) GB"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Average Archive size: $($ExchangeEnvironment.Average_Archive_size) MB"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Total DB Sizes: $($ExchangeEnvironment.DBSizes) GB"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Total Archives Count: $($ExchangeEnvironment.TotalArchivesCount) "
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Total Archives Size: $($ExchangeEnvironment.TotalArchivesSize) GB"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Average Archive size: $($ExchangeEnvironment.Average_Archive_size) MB"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Total DB Sizes: $($ExchangeEnvironment.DBSizes) GB"
         
          
 
@@ -6147,13 +6147,13 @@
 
     #region Log Info 
              
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 4 Process] : Pass"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 4 Process] : Pass"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
 
     #endregion Log Info 
 
@@ -6178,9 +6178,9 @@
 
         Write-Progress -id 1 -activity "Get-ExchangeOrgReport" -status "Phase 4 of 6 : Generating HTML" -percentComplete 90
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 5 Output] : Starting"    
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 5 Output] : Starting"    
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
 
          _status " 4. Generating Output HTML File" 1
 
@@ -6190,7 +6190,7 @@
     #region Section 5.1 Main HTML Output Overall statistics tables
         
          _status "     4.1 Generating Output HTML" 2
-         Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Generating Main HTML Output"
+         #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Generating Main HTML Output"
 
         
         #region draw HTML headings
@@ -6378,7 +6378,7 @@
         try{
             $Output | Out-File $HTMLReport
         } catch {
-            Write-CorpError -myError $_ -Info "Module 5 Output - Fail saving HTM report at $HTMLReport" -mypath $ErrorFullPath
+            #Write-CorpError -myError $_ -Info "Module 5 Output - Fail saving HTM report at $HTMLReport" -mypath $ErrorFullPath
         }finally {
         $ErrorActionPreference = $var
         }
@@ -6391,17 +6391,17 @@
     #region Section 5.6 DB Preference HTML
 
         _status "     4.2 Generating DB Activation Output HTML" 2  
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Generating DB Activation HTML Output" 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Conditions to generate is : E2010 variable is true and (ExchangeEnvironment.DAGs.count) variable is true " 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - In simple words, if you are running new PowerShell host, and there are DAGs detected using your filter " 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - E2010 Value is $E2010 " 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - ExchangeEnvironment.DAGs.count Value is $($ExchangeEnvironment.DAGs.count) " 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Generating DB Activation HTML Output" 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Conditions to generate is : E2010 variable is true and (ExchangeEnvironment.DAGs.count) variable is true " 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - In simple words, if you are running new PowerShell host, and there are DAGs detected using your filter " 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - E2010 Value is $E2010 " 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - ExchangeEnvironment.DAGs.count Value is $($ExchangeEnvironment.DAGs.count) " 
 
 
         if ( $E2010 -and ($ExchangeEnvironment.DAGs.count) ) { 
         
                
-                Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  -  Conditions are met ! Proceed "
+                #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  -  Conditions are met ! Proceed "
                 #Open an HTML Document
 
                 $Output2 ="<html>
@@ -6415,25 +6415,25 @@
             
                 foreach ($dag in $ExchangeEnvironment.DAGs) {
                 
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Inspecting $($dag.name.toupper())"
-                            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):   - Does this DAG has members and those members have databases? "
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Inspecting $($dag.name.toupper())"
+                            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):   - Does this DAG has members and those members have databases? "
 
                             if($dag.members.count -and $dag.databases.count) {
 
-                                 Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):   - Does this DAG has members and those members have databases? Answer is Yes "
+                                 #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):   - Does this DAG has members and those members have databases? Answer is Yes "
 
                                     #Testing if we have all DAG members after the filter
             
                                     $test = Test-DAGFullMembers $DAG $ExchangeServersList
 
-                                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Are all member servers of $($dag.name.toupper()) are available to us after applying user filter? "
-                                    Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  -Entering (Test-DAGFullMembers function) "
+                                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Are all member servers of $($dag.name.toupper()) are available to us after applying user filter? "
+                                    #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  -Entering (Test-DAGFullMembers function) "
 
                                     
 
                                     if ($test) { 
                                         
-                                        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Answer is $test . Processing"
+                                        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Answer is $test . Processing"
 
                                         $hash_server_vs_db_Aggregates = @{}
                                         #return a hash table with servers in the DAG and count of DBs prefered on it
@@ -6442,20 +6442,20 @@
 
                                         # Writing Two Tables
                                         $Output2 += _GetDBPreference_Table_HTML $DAG $ExchangeEnvironment $hash_server_vs_db_Aggregates
-                                         Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Done creating DAG Activation diagram for DAG : $($dag.name.toupper()) "
+                                         #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Done creating DAG Activation diagram for DAG : $($dag.name.toupper()) "
 
                                         # Append Space between each DAG Table
                                         $Output2 += "<br /><br /><br /><br /><br />"
                             
                                         } # if ($test)
                                         else {
-                                         Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Answer is $test . Skipping getting DB Activation Table for DAG : $($dag.name.toupper()) "
+                                         #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Answer is $test . Skipping getting DB Activation Table for DAG : $($dag.name.toupper()) "
 
                                         }
                             } 
                             else {
                             # if($dag.members.count -and $dag.databases.count)
-                             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):   - Does this DAG has members and those members have databases? Answer is No "
+                             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):   - Does this DAG has members and those members have databases? Answer is No "
                              
                             }
                     
@@ -6479,7 +6479,7 @@
                 try{
                     $Output2 | Out-File $HTMLReport
                 } catch {
-                    Write-CorpError -myError $_ -Info "Module 5 Output - Fail saving HTM report at $HTMLReport" -mypath $ErrorFullPath
+                    #Write-CorpError -myError $_ -Info "Module 5 Output - Fail saving HTM report at $HTMLReport" -mypath $ErrorFullPath
                 }finally {
                 $ErrorActionPreference = $var
                 }
@@ -6492,7 +6492,7 @@
         else {
             #skipping HTML report
             Write-Warning -Message " Skipping creating DB Activation HTML"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Skipping creating DB Activation HTML " 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Skipping creating DB Activation HTML " 
         }
     
 
@@ -6502,13 +6502,13 @@
 
     #region Log Info 
              
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 5 Output] : Pass"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 5 Output] : Pass"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
 
     #endregion Log Info 
    
@@ -6529,9 +6529,9 @@
     #region Log Info 
 
         Write-Progress -id 1 -activity "Get-ExchangeOrgReport" -status "Phase 5 of 6 : Generating Charts" -percentComplete 90
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 6 Charts] : Starting"    
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 6 Charts] : Starting"    
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
         _status " 5. Generating Charts" 1
 
     #endregion Log Info       
@@ -6540,22 +6540,22 @@
     #region Section 6.1 Chart Test
          $chart_Test = $true
          
-         Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): "
+         #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): "
 
         $var = $ErrorActionPreference
         $ErrorActionPreference = "Stop"
         try {
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Testing if (Microsoft Chart Controls for Microsoft .NET Framework) is installed on this machine"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Testing if (Microsoft Chart Controls for Microsoft .NET Framework) is installed on this machine"
             [void][Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms.DataVisualization")
             $testchart  = new-object System.Windows.Forms.DataVisualization.Charting.Chart
-             Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Test result is Success."
+             #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Test result is Success."
 
         } Catch {
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Test result is FAIL. Please make sure (Microsoft Chart Controls for Microsoft .NET Framework) is installed on this machine "  
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Download Microsoft Chart Controls for Microsoft .NET Framework 3.5 (http://www.microsoft.com/en-us/download/details.aspx?id=14422)" 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Skipping Chart Module" 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Test result is FAIL. Please make sure (Microsoft Chart Controls for Microsoft .NET Framework) is installed on this machine "  
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Download Microsoft Chart Controls for Microsoft .NET Framework 3.5 (http://www.microsoft.com/en-us/download/details.aspx?id=14422)" 
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  - Skipping Chart Module" 
             $chart_Test = $false 
             _status "      Skipping creating charts... check Info log for detials" 2 
         }
@@ -6570,15 +6570,15 @@
     if ($chart_Test) {
     #region Section 6.2 Chart DB Vs Mailbox Count
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : DB vs Mailbox count chart"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : DB vs Mailbox count chart"
         if (($ExchangeEnvironment.chart_db).count) {
             $var = $ExchangeEnvironment.chart_db
             $chart= Join-Path $ScriptFilesPath "DB_MailboxCount.png"                            
             Get-Corpchart_light -data $var -obj_key Name -obj_value MailboxCount -filepath $chart -Type column -title_text "DB vs Mailboxcount" -chartarea_Xtitle "DB" -chartarea_Ytitle "Mailbox count" -sort asc -append_date_title -IsvalueShownAsLabel -chart_color "magenta" -ErrorFullPath $ErrorFullPath
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : DB vs Mailbox count chart"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : DB vs Mailbox count chart"
         }else {
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
 
         }   
 
@@ -6587,15 +6587,15 @@
 
     #region Section 6.3 Chart DB Vs Backup
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : DB vs Backup days"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : DB vs Backup days"
         if (($ExchangeEnvironment.chart_db).count) {
             $var = $ExchangeEnvironment.chart_db
             $chart= Join-Path $ScriptFilesPath "DB_Backup.png"                            
             Get-Corpchart_light -data $var -obj_key Name -obj_value Backup -filepath $chart -Type column -title_text "DB vs Backup days" -chartarea_Xtitle "DB" -chartarea_Ytitle "Backup Since (days) [-1 = never backed up]" -sort asc -append_date_title -IsvalueShownAsLabel -chart_color "blue" -ErrorFullPath $ErrorFullPath
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : DB vs Backup days chart"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : DB vs Backup days chart"
         }else {
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
 
         }   
 
@@ -6604,15 +6604,15 @@
 
     #region Section 6.3 Chart DB Vs Size
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : DB vs Size in GB chart"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : DB vs Size in GB chart"
         if (($ExchangeEnvironment.chart_db).count) {
             $var = $ExchangeEnvironment.chart_db
             $chart= Join-Path $ScriptFilesPath "DB_Size.png"                            
             Get-Corpchart_light -data $var -obj_key Name -obj_value DBSize -filepath $chart -Type column -title_text "DB vs Size in GB" -chartarea_Xtitle "DB" -chartarea_Ytitle "Size (GB)" -sort asc -append_date_title -IsvalueShownAsLabel -chart_color "DarkRed" -ErrorFullPath $ErrorFullPath
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : DB vs Size in GB chart"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : DB vs Size in GB chart"
         }else {
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
 
         }   
 
@@ -6621,15 +6621,15 @@
 
     #region Section 6.4 Chart Mailbox Server Vs Mailbox Count
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : Mailbox Server Vs Mailbox CountB chart"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : Mailbox Server Vs Mailbox CountB chart"
         if (($ExchangeEnvironment.Chart_Srv).count) {
             $var = $ExchangeEnvironment.Chart_Srv
             $chart= Join-Path $ScriptFilesPath "Srv_MailboxCount.png"                            
             Get-Corpchart_light -data $var -obj_key Name -obj_value MailboxCount -filepath $chart -Type column -title_text "Mailbox Server Vs Mailbox Count" -chartarea_Xtitle "MBX" -chartarea_Ytitle "Mailbox Count" -sort asc -append_date_title -IsvalueShownAsLabel -chart_color "blue" -ErrorFullPath $ErrorFullPath
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : Mailbox Server Vs Mailbox Count chart"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : Mailbox Server Vs Mailbox Count chart"
         }else {
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
 
         }   
 
@@ -6638,15 +6638,15 @@
 
     #region Section 6.4 Chart Mailbox Server Vs Mounted DBs
 
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : Mailbox Server Vs Mounted DBs chart"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Processing : Mailbox Server Vs Mounted DBs chart"
         if (($ExchangeEnvironment.Chart_Srv).count) {
             $var = $ExchangeEnvironment.Chart_Srv
             $chart= Join-Path $ScriptFilesPath "Srv_DBMountedCount.png"                            
             Get-Corpchart_light -data $var -obj_key Name -obj_value DBMountedCount -filepath $chart -Type column -title_text "Mailbox Server Vs DBs Mounted" -chartarea_Xtitle "MBX" -chartarea_Ytitle "DBs Mounted" -sort asc -append_date_title -IsvalueShownAsLabel -chart_color "blue" -ErrorFullPath $ErrorFullPath
 
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : Mailbox Server Vs Mounted DBs chart"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Completed : Mailbox Server Vs Mounted DBs chart"
         }else {
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
+            #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):  Skipping : No Data available"
 
         }   
 
@@ -6655,13 +6655,13 @@
     } # if ($chart_Test)
     #region Log Info 
              
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 6 Charts] : Pass"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 6 Charts] : Pass"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"  
 
     #endregion Log Info 
 
@@ -6680,9 +6680,9 @@
       #region Log Info 
 
         Write-Progress -id 1 -activity "Get-ExchangeOrgReport" -status "Phase 6 of 6 : Final Tasks" -percentComplete 99
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 7 Final Tasks] : Starting"    
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):[Module 7 Final Tasks] : Starting"    
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):" 
 
         _status " 6. Final Tasks" 1
 
@@ -6710,14 +6710,14 @@
        
       #region Log Info 
              
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 7 Final Tasks] : Pass"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"
-        Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Script run time (Minutes:seconds:milliseconds): $($Watch.Elapsed.Minutes.ToString()):$($Watch.Elapsed.Seconds.ToString()):$($Watch.Elapsed.MilliSeconds.ToString())"   
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): [Module 7 Final Tasks] : Pass"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp):"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): $('-' * 60)"
+        #Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Script run time (Minutes:seconds:milliseconds): $($Watch.Elapsed.Minutes.ToString()):$($Watch.Elapsed.Seconds.ToString()):$($Watch.Elapsed.MilliSeconds.ToString())"   
 
         _screenFooter $ExchangeEnvironment $Databases $Watch
 
@@ -6726,9 +6726,9 @@
 
       #region closing log files
 
-        Log-Finish -LogFullPath $InfoFullPath
-        Log-Finish -LogFullPath $ErrorFullPath
-        Log-Finish -LogFullPath $DetailedFullPath
+        #Log-Finish -LogFullPath $InfoFullPath
+        #Log-Finish -LogFullPath $ErrorFullPath
+        #Log-Finish -LogFullPath $DetailedFullPath
      
      #endregion closing log files
 
