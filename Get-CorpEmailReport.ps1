@@ -3012,7 +3012,7 @@
 					                                         if ($_ -like "Update Rollup *") {					                            
 						                                            $tRU = $_.Split(" ")[2]
 						                                            if ($tRU -like "*-*") { $tRUV=$tRU.Split("-")[1]; $tRU=$tRU.Split("-")[0] } else { $tRUV="" }
-						                                            if ($tRU -ge $RollupLevel) { $RollupLevel=$tRU; $RollupVersion=$tRUV }
+						                                            if ([int]$tRU -ge [int]$RollupLevel) { $RollupLevel=$tRU; $RollupVersion=$tRUV }
 					                                         }
 				                                         }
 
