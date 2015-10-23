@@ -5010,11 +5010,11 @@
         throw " [Module Factory - Creating files] Validating log files path] Sorry, please check the sript path name again "
     }
 
-    $ScriptFilesPath = Join-Path $ScriptFilesPath "EmailReportFiles"
+    $ScriptFilesPath = Join-Path $ScriptFilesPath "daily"
 
     if(Test-Path $ScriptFilesPath ) {
         try {
-                Remove-Item $ScriptFilesPath -Force -Recurse -ErrorAction Stop
+                #Remove-Item $ScriptFilesPath -Force -Recurse -ErrorAction Stop
 
             }catch {
 
