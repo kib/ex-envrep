@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<Settings>
+  <EmailSettings>
+    <SMTPServer>mailserver.domain.local</SMTPServer>
+    <SMTPPort>25</SMTPPort>
+    <MailFrom>noreply@domain.local</MailFrom> 
+    <MailTo>distributiongroup@domain.local</MailTo> 
+  </EmailSettings>
+  <Exclusions>
+    <DBName>PUB02</DBName>
+    <DBName>PUB03</DBName>
+    <DBName>PUB04</DBName>
+  </Exclusions>
+  <OtherSettings>
+    <SendMailOnNoError>False</SendMailOnNoError>
+    <ThresholdMonday>24</ThresholdMonday>
+    <ThresholdOther>24</ThresholdOther>
+  </OtherSettings>
+</Settings>

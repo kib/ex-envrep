@@ -306,10 +306,10 @@
     [cmdletbinding(DefaultParameterSetName="ServerFilter")]
 
     param(
-        [parameter(Position=0,Mandatory=$true,ValueFromPipeline=$false,HelpMessage='Path to store script files like c:\ ')][string]$ScriptFilesPath,
+        [parameter(Position=0,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Path to store script files like c:\ ')][string]$ScriptFilesPath,
 	    [parameter(Position=1,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Send Mail ($True/$False)')][bool]$SendMail=$false,
 	    [parameter(Position=2,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Mail From')][string]$MailFrom,
-	    [parameter(Position=3,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Mail To')]$MailTo,
+	    [parameter(Position=3,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Mail To')][string]$MailTo,
 	    [parameter(Position=4,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Mail Server')][string]$MailServer,	
 	    [parameter(Position=5,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Change view to entire forest')][bool]$ViewEntireForest=$true,
 	    [parameter(Position=6,Mandatory=$false,ValueFromPipeline=$false,HelpMessage='Server Name Filter (eg NL-*)',ParameterSetName="ServerFilter")][string]$ServerFilter="*",
@@ -348,6 +348,18 @@
 
 
 #region Module 1 : Customization
+
+    # Import Settings.xml config file
+    $myDir = Split-Path -Parent $MyInvocation.MyCommand.Path
+    [xml]$ConfigFile = Get-Content "$MyDir\Settings.xml"
+
+    # Email settings from Settings.xml
+    $MailTo = $ConfigFile.Settings.EmailSettings.MailTo
+    $MailFrom = $ConfigFile.Settings.EmailSettings.MailFrom
+    $MailServer = $ConfigFile.Settings.EmailSettings.SMTPServer
+    
+    if($MailTo){$SendMail=$True}
+    if(!$ScriptFilesPath){$ScriptFilesPath=".\"}
 
     #Threshold for days since last database backup (warning threshold) . Color warning will show otherwise
 	[int]$BackupWarning = 1000
