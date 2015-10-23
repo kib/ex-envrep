@@ -371,7 +371,7 @@
     [int]$UptimeErrorThreshold   = 100                  
 
     #Coloring
-    $greenColor    = "#00FF00"
+    $greenColor    = "#A9FFB5"
     $warningColor  = "#FF9900"
     $errorcolor    = "#980000"
 
@@ -3677,15 +3677,15 @@
 	        param($Servers,$ExchangeEnvironment,$ExRoleStrings,$Pre2007=$False)
 	        if ($Pre2007)
 	        {
-		        $BGColHeader="#880099"
-		        $BGColSubHeader="#8800CC"
+		        $BGColHeader="#616161"
+		        $BGColSubHeader="#A3A3A3"
 		        $Prefix=""
                 $IntNamesText=""
                 $ExtNamesText=""
                 $CASArrayText=""
 	        } else {
-		        $BGColHeader="#000099"
-		        $BGColSubHeader="#0000FF"
+		        $BGColHeader="#616161"
+		        $BGColSubHeader="#A3A3A3"
 		        $Prefix="Site:"
                 $IntNamesText=""
                 $ExtNamesText=""
@@ -3723,24 +3723,15 @@
 	        #$Output+="</colgroup><col width=""20%""><col  width=""20%"">
             $Output+="</colgroup><col width=""10%""><col  width=""10%""><col  width=""10%""><col  width=""10%"">
 
-	        <tr bgcolor=""$($BGColHeader)""><th><font color=""#ffffff"">$($Prefix) $($Servers.Key)</font></th>
-	        <th colspan=""$(($ExchangeEnvironment.TotalServersByRole.Count)+2)"" align=""left""><font color=""#ffffff"">$($ExtNamesText)$($IntNamesText)</font></th>
-	        <th align=""center""><font color=""#ffffff"">$($CASArrayText)</font></th><th></th><th></th></tr>"
+	        <tr bgcolor=""$($BGColSubHeader)""><th>$($Prefix) $($Servers.Key)</th>
+	        <th colspan=""$(($ExchangeEnvironment.TotalServersByRole.Count)+2)"" align=""left"">$($ExtNamesText)$($IntNamesText)</th>
+	        <th align=""center"">$($CASArrayText)</th><th></th><th></th></tr>"
 	        $TotalMailboxes=0
 	        $Servers.Value | %{$TotalMailboxes += $_.Mailboxes}
-	        $Output+="<tr bgcolor=""$($BGColSubHeader)""><th><font color=""#ffffff"">Mailboxes: $($TotalMailboxes)</font></th><th>"
-            $Output+="<font color=""#ffffff"">Exchange Version</font></th>"
-	        $ExchangeEnvironment.TotalServersByRole.GetEnumerator()|Sort Name| %{$Output+="<th><font color=""#ffffff"">$($ExRoleStrings[$_.Key].Short)</font></th>"}
-	        $Output+="<th><font color=""#ffffff"">OS Version</font></th>
-            <th><font color=""#ffffff"">OS Service Pack</font></th>
-
-            <th><font color=""#ffffff"">UP Time (Days)</font></th>
-
-            <th><font color=""#ffffff"">Exch Service Health</font></th> 
-    
-    
-    
-            </tr>"
+	        $Output+="<tr align=""left"" bgcolor=""$($BGColSubHeader)""><th>Mailboxes: $($TotalMailboxes)</th><th>"
+            $Output+="Exchange Version</th>"
+	        $ExchangeEnvironment.TotalServersByRole.GetEnumerator()|Sort Name| %{$Output+="<th>$($ExRoleStrings[$_.Key].Short)</th>"}
+	        $Output+="<th>OS Version</th><th>OS Service Pack</th><th>UP Time (Days)</th><th>Exch. Service Health</th></tr>"
 	        $AlternateRow=0
 
 
@@ -3775,13 +3766,17 @@
 			        $Output+="<td"
 			        if ($Server.Roles -contains $_.Key)
 			        {
-				        $Output+=" align=""center"" style=""background-color:#00FF00"""
+				        $Output+=" align=""center"" style=""background-color:#F2FFAB"""
 			        }
 			        $Output+=">"
 			        if (($_.Key -eq "ClusteredMailbox" -or $_.Key -eq "Mailbox" -or $_.Key -eq "BE") -and $Server.Roles -contains $_.Key) 
 			        {
 				        $Output+=$Server.Mailboxes
 			        } 
+                    elseif ($Server.Roles -contains $_.Key) 
+                    {
+                        $Output+="&radic;"
+                    }
 		        }
 				
 		        $Output+="<td>$($Server.OSVersion)</td><td>$($Server.OSServicePack)</td>";	
@@ -3792,9 +3787,9 @@
 
                 if ($server.ExUpTime -ne $null -or $server.ExUpTime -eq 0 ) {
                         if ($server.ExUpTime -le $UptimeErrorThreshold) {
-                            $Output+="<td align=""center"">$($Server.ExUpTime)</td>";
+                            $Output+="<td>$($Server.ExUpTime)</td>";
                         }else {
-                            $Output+="<td align=""center"" style=""background-color:$($ErrorColor)""><font color=""#FFFFFF"" >$($Server.ExUpTime)</font></td>";
+                            $Output+="<td style=""background-color:$($ErrorColor)""><font color=""#FFFFFF"" >$($Server.ExUpTime)</font></td>";
                         }
                 
         
@@ -3807,11 +3802,14 @@
                 # Service Health
 
 
-                if ($server.ExServicesHealth -notlike "N/A" ) {
-                    $Output+="<td>$($Server.ExServicesHealth)</td>";
+                if ($server.ExServicesHealth -like "Pass"){
+                    $Output+="<td style=""background-color:#A9FFB5"">$($Server.ExServicesHealth)</td>";
+                }
+                elseif ($server.ExServicesHealth -notlike "N/A" ) {
+                    $Output+="<td style=""background-color:$($ErrorColor)"">$($Server.ExServicesHealth)</td>";
         
                 } else {        
-                $Output+="<td>$($Server.ExServicesHealth)</td></tr>";
+                $Output+="<td style=""background-color:$($WarningColor)"">$($Server.ExServicesHealth)</td></tr>";
 
                 }	
 
@@ -3869,8 +3867,8 @@
 	
 	        $Output="<table border=""0"" cellpadding=""3"" width=""100%"" style=""font-size:8pt;font-family:Arial,sans-serif"">
 	
-	        <tr align=""center"" bgcolor=""#FFD700"">
-	        <th>Server</th>"
+	        <tr align=""center"" bgcolor=""#A3A3A3"">
+	        <thi align=""left"">Server</th>"
 
     
 
@@ -3878,7 +3876,7 @@
 	        {
 		        $Output+="<th>Storage Group</th>"
 	        }
-	        $Output+="<th>Database</th>
+	        $Output+="<th align=""left"">Database</th>
 	        <th>Mailboxes</th>
 	        <th>Av. Mailbox Size MB</th>"
 
@@ -3926,7 +3924,7 @@
 
             $Output+="<th>DB Pref Check</th>"
             #$Output+="<th>DB Pref srv</th>"
-            $Output+="<th>DB Act Pref</th>"
+            $Output+="<th align=""left"">DB Act Pref</th>"
 
             #endregion Adding Preference Check 
 
@@ -4048,16 +4046,16 @@
                 #region Adding Preference Check
 
                     if($Database.DBPreCheck -like "Pass"){
-                        $Output+="<td align=""center""><font color=""#339933"" ><strong>$($Database.DBPreCheck)</strong></font></td>"
+                        $Output+="<td align=""center"" style=""background-color:#A9FFB5"">$($Database.DBPreCheck)</td>"
                     }else {
 
-                    $Output+="<td align=""center""><font color=""$($errorcolor)"" ><strong>$($Database.DBPreCheck)</strong></font></td>"
+                    $Output+="<td align=""center"" style=""background-color:$($errorcolor)"">$($Database.DBPreCheck)</td>"
                     }
 
             
 
                     #$Output+="<td align=""center"">$($Database.DatabasePereferredServer)</td>"
-                    $Output+="<td align=""center"">$($Database.DB_Act_pref)</td>"
+                    $Output+="<td>$($Database.DB_Act_pref)</td>"
 
                 #endregion Adding Preference Check
 
@@ -4087,10 +4085,10 @@
 	        # Drawing Table header
 	
 	        $Output="<table border=""0"" cellpadding=""3"" width=""100%"" style=""font-size:8pt;font-family:Arial,sans-serif"">	
-	        <tr align=""center"" bgcolor=""#FFD700"">"
+	        <tr align=""center"" bgcolor=""#616161"">"
 	
 	        $Output+="<th>#</th><th>Database Name</th><th>Mounted</th><th>Server</th>"
-	
+
 	        $Output+="<th>DB Size</th>"
 	
 	        $Output+="<th>DB Disk Free</th>"
@@ -4203,8 +4201,8 @@
 
             $WarningColor                      = "#FF9900"
 		    $ErrorColor                        = "#980000"
-		    $BGColHeader                       = "#000099"
-		    $BGColSubHeader                    = "#0000FF"
+		    $BGColHeader                       = "#616161"
+		    $BGColSubHeader                    = "#A3A3A3"
 		    [Array]$Servers_In_DAG             = $DAG.Members
 
             $Output2 ="<table border=""0"" cellpadding=""3"" width=""50%"" style=""font-size:8pt;font-family:Arial,sans-serif"">
@@ -4281,7 +4279,7 @@
             #region Table Part 2 : Aggregates info
 
                 #Total Assigned copies	
-	            $Output2 += "<tr bgcolor=""#440164""><th><font color=""#ffffff"">Total Copies</font></th>"	
+	            $Output2 += "<tr bgcolor=""#616161""><th><font color=""#ffffff"">Total Copies</font></th>"	
 	            $Servers_In_DAG|Sort-Object| 
 			        %{ 
 		                $srv = $ExchangeEnvironment.Servers[$_]
@@ -4291,7 +4289,7 @@
 	            $Output2 +="</tr>"
             
                 #Copies Assigned Ideal	
-	            $Output2 += "<tr bgcolor=""#DB08CD""><th><font color=""#ffffff"">Ideal Mounted DB Copies</font></th>"	
+	            $Output2 += "<tr bgcolor=""#616161""><th><font color=""#ffffff"">Ideal Mounted DB Copies</font></th>"	
 	            $Servers_In_DAG|Sort-Object| 
 			    %{ 
 			        foreach ($srv in $hash_server_vs_db_Aggregates.GetEnumerator()) {
@@ -4334,19 +4332,19 @@
             # Database Availability Table number 1 [Header]
 		    $Output ="<table border=""0"" cellpadding=""3"" width=""50%"" style=""font-size:8pt;font-family:Arial,sans-serif"">
 		    <col width=""20%""><col width=""10%""><col width=""70%"">
-		    <tr align=""center"" bgcolor=""#FC8E10""><th><font color=""#ffffff"">Database Availability Group Name</font></th><th><font color=""#ffffff"">Member Count</font></th>
-		    <th><font color=""#ffffff"">Database Availability Group Members</font></th></tr>
+		    <tr align=""left"" bgcolor=""#616161""><th align=""left""><font color=""#ffffff"">Database Availability Group Name</font></th><th align=""left""><font color=""#ffffff"">Member Count</font></th>
+		    <th align=""left""><font color=""#ffffff"">Database Availability Group Members</font></th></tr>
 		    <tr><td>$($DAG.Name)</td><td align=""center"">
 		    $($DAG.MemberCount)</td><td>"
 		    $DAG.Members | % { $Output+="$($_) " }
-		    $Output +="</td></tr></table>"
+		    $Output +="</td></tr></table><br />"
 
         
             #Database Availability Table number 2 
             $Output += _GetDAG_DB_Layout -Databases $DAG.Databases -DAG $DAG $ExchangeEnvironment $hash_server_vs_db_Aggregates
               
 
-            Write-Output $output
+            Write-Output $Output
 
       } # function _GetDBPreference_Table_HTML
 
@@ -5030,7 +5028,7 @@
     
     if(!(Test-Path $ScriptFilesPath )) {
         try {
-            New-Item -ItemType directory -Path $ScriptFilesPath -ErrorAction Stop
+            #New-Item -ItemType directory -Path $ScriptFilesPath -ErrorAction Stop
         }catch{
             Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating working directory] Could not delete directory $ScriptFilesPath"
             Exit
@@ -5062,7 +5060,7 @@
 
             If((Test-Path -Path $ErrorFullPath )){
                 try {
-                Remove-Item -Path $ErrorFullPath  -Force -ErrorAction Stop
+                #Remove-Item -Path $ErrorFullPath  -Force -ErrorAction Stop
                 }catch {
                     Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Deleting old log files]"
                     Exit
@@ -5073,7 +5071,7 @@
             #Create Error file
 
             try {
-                New-Item -Path $ScriptFilesPath -Name $ErrorLogFile –ItemType File -ErrorAction Stop
+                #New-Item -Path $ScriptFilesPath -Name $ErrorLogFile –ItemType File -ErrorAction Stop
             }
             catch {
                  Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
@@ -5085,7 +5083,7 @@
 
             Log-Start -LogFullPath $ErrorFullPath
 
-            Write-verbose -Message "[Module Factory] : Error Log File created $ErrorFullPath"
+            #Write-verbose -Message "[Module Factory] : Error Log File created $ErrorFullPath"
 
         #endregion ErrorLog
 
@@ -5114,7 +5112,7 @@
     
             #Create Error file
             try {
-                New-Item -Path $ScriptFilesPath -Name $InfoLogFile –ItemType File -ErrorAction Stop
+                #New-Item -Path $ScriptFilesPath -Name $InfoLogFile –ItemType File -ErrorAction Stop
             }
             catch {
                  Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
@@ -5160,7 +5158,7 @@
             #Create Error file
 
             try {
-                New-Item -Path $ScriptFilesPath -Name $DetailedLogFile –ItemType File -ErrorAction Stop
+                #New-Item -Path $ScriptFilesPath -Name $DetailedLogFile –ItemType File -ErrorAction Stop
             }
             catch {
                  Write-CorpError -myError $_ -ViewOnly -Info "[Module Factory - Creating log files]"
@@ -6207,7 +6205,7 @@
         #region draw HTML Table for Exchange Server version and roles
 
             $Output +="  <table border=""0"" cellpadding=""3"" style=""font-size:8pt;font-family:Arial,sans-serif"">
-            <tr bgcolor=""#009900"">
+            <tr bgcolor=""#616161"">
             <th colspan=""$($ExchangeEnvironment.TotalMailboxesByVersion.Count)""><font color=""#ffffff"">Total Servers:</font></th>"
             if ($ExchangeEnvironment.RemoteMailboxes)
                 {
@@ -6216,7 +6214,7 @@
                 $Output+="<th colspan=""$($ExchangeEnvironment.TotalMailboxesByVersion.Count+1)""><font color=""#ffffff"">Total Mailboxes:</font></th>"
                 }
             $Output+="<th colspan=""$($ExchangeEnvironment.TotalServersByRole.Count)""><font color=""#ffffff"">Total Roles:</font></th></tr>
-            <tr bgcolor=""#00CC00"">"
+            <tr bgcolor=""#A3A3A3"">"
 
            
             $ExchangeEnvironment.TotalMailboxesByVersion.GetEnumerator()|Sort Name| %{$Output+="<th>$($ExVersionStrings[$_.Key].Short)</th>"}
@@ -6248,12 +6246,12 @@
 
             $Output+="<font size=""1"" face=""Arial,sans-serif""></font>
             <table border=""0"" cellpadding=""3"" style=""font-size:8pt;font-family:Arial,sans-serif"">
-            <tr bgcolor=""#8E1275"">"
+            <tr bgcolor=""#616161"">"
             $Output+= "<th colspan=""$($MailboxesTypes.Count)""><font color=""#ffffff"">Mailbox Types</font></th>"
 
-            $Output+="<tr bgcolor=""#E46ACB"">"
+            $Output+="<tr bgcolor=""#A3A3A3"">"
             
-            $MailboxesTypes |Sort -Descending Count| %{$Output+="<th><font color=""#ffffff"">$($_.Name)</font></th>"}
+            $MailboxesTypes |Sort -Descending Count| %{$Output+="<th>$($_.Name)</th>"}
             $Output+="<tr>"
             $Output+="<tr align=""center"" bgcolor=""#dddddd"">"
             $MailboxesTypes |Sort -Descending Count| %{$Output+="<td>$($_.count)</td>" }
@@ -6265,14 +6263,14 @@
         #region draw table for overall mailbox and archive statistics
 
             $Output+="<table border=""0"" cellpadding=""4"" style=""font-size:8pt;font-family:Arial,sans-serif"">
-            <tr bgcolor=""#9D9D00"">"
+            <tr bgcolor=""#616161"">"
             $Output+= "<th colspan= ""5"" ><font color=""#ffffff"">General Statistics</font></th>"
-            $Output+="<tr bgcolor=""#DFE32D"">"
+            $Output+="<tr bgcolor=""#A3A3A3"">"
             $Output+="<th><font color=""#000000"">Total Mailbox Count</font></th>"
             $Output+="<th><font color=""#000000"">Total DB Size (GB)</font></th>"            
-            $Output+="<th bgcolor=""#FFA500""><font color=""#000000"">Total Archive Count</font></th>"
-            $Output+="<th bgcolor=""#FFA500""><font color=""#000000"">Total Archive Sizes (GB)</font></th>"
-            $Output+="<th bgcolor=""#FFA500""><font color=""#000000"">Average Archive Size (GB)</font></th>"
+            $Output+="<th bgcolor=""#A3A3A3""><font color=""#000000"">Total Archive Count</font></th>"
+            $Output+="<th bgcolor=""#A3A3A3""><font color=""#000000"">Total Archive Sizes (GB)</font></th>"
+            $Output+="<th bgcolor=""#A3A3A3""><font color=""#000000"">Average Archive Size (GB)</font></th>"
             $Output+="<tr>"
             $Output+="<tr align=""center"" bgcolor=""#dddddd"">"
             $Output+="<td><font color=""#000000"">$($ExchangeEnvironment.TotalMailboxes) Mailboxes</font></td>" 
@@ -6317,12 +6315,12 @@
 		        # Database Availability Group Header
 		        $Output+="<table border=""0"" cellpadding=""3"" width=""100%"" style=""font-size:8pt;font-family:Arial,sans-serif"">
 		        <col width=""20%""><col width=""10%""><col width=""70%"">
-		        <tr align=""center"" bgcolor=""#FF8000 ""><th>Database Availability Group Name</th><th>Member Count</th>
-		        <th>Database Availability Group Members</th></tr>
-		        <tr><td>$($DAG.Name)</td><td align=""center"">
+		        <tr align=""left"" bgcolor=""#616161""><thi align=""left""><font color=""#ffffff"">Database Availability Group Name</font></th><th align=""left""><font color=""#ffffff"">Member Count</font></th>
+		        <th align=""left""><font color=""#ffffff"">Database Availability Group Members</font></th></tr>
+		        <tr><td>$($DAG.Name)</td><td>
 		        $($DAG.MemberCount)</td><td>"
 		        $DAG.Members | % { $Output+="$($_) " }
-		        $Output+="</td></tr></table>"
+		        $Output+="</td></tr></table><tr />"
 		
 		        # Get Table HTML
 		        $Output+=_GetDBTable -Databases $DAG.Databases
@@ -6370,7 +6368,6 @@
         #creating HTML file
 
         $HTMLReport = Join-Path $ScriptFilesPath  "HTMLReport.Html"
-
         
         $var = $ErrorActionPreference                           
         $ErrorActionPreference = "stop"
