@@ -3868,7 +3868,7 @@
 	        $Output="<table border=""0"" cellpadding=""3"" width=""100%"" style=""font-size:8pt;font-family:Arial,sans-serif"">
 	
 	        <tr align=""center"" bgcolor=""#A3A3A3"">
-	        <thi align=""left"">Server</th>"
+	        <th align=""left"">Server</th>"
 
     
 
