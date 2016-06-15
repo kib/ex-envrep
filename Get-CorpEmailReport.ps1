@@ -381,8 +381,8 @@
 
 #++++++++++++++++++++++++++++++++++++   Module 2 : Function    ++++++++++++++++++++++++++++++++++++
 
-+#Add Exchange 2010 snapin if not already loaded in the PowerShell session
-+if (!(Get-PSSnapin | where {$_.Name -eq "Microsoft.Exchange.Management.PowerShell.E2010"}))
+#Add Exchange 2010 snapin if not already loaded in the PowerShell session
+if (!(Get-PSSnapin | where {$_.Name -eq "Microsoft.Exchange.Management.PowerShell.E2010"}))
 {
     try
     {
@@ -1769,7 +1769,7 @@
 
                         $myindex = $name.IndexOf(".")
 
-                        $output = $name.Substring( 0,$myindex)
+                        $Output = $name.Substring( 0,$myindex)
 
                         Write-Output $Output
 
@@ -2081,7 +2081,8 @@
 
                 #region files inventory
                     
-                    $htmlFileName = Join-Path $ScriptFilesPath "HTMLReport.html"
+                    $htmlFileName = $(get-Date -f yyyyMMdd) + ".html"                    
+                    $htmlFileName = Join-Path $ScriptFilesPath $htmlFileName
 
                     $files = @()
 
@@ -6370,7 +6371,8 @@
 
         #creating HTML file
 
-        $HTMLReport = Join-Path $ScriptFilesPath  "HTMLReport.Html"
+        $HTMLReport = $(get-Date -f yyyyMMdd) + ".html"
+        $HTMLReport = Join-Path $ScriptFilesPath $HTMLReport
         
         $var = $ErrorActionPreference                           
         $ErrorActionPreference = "stop"
@@ -6471,8 +6473,9 @@
                 $Output2 += "</body></html>"
             
                 #Output the HTML document
-                $HTMLReport = Join-Path $ScriptFilesPath  "DB DAG Layout.Html" 
-                
+                $HTMLReport = $(get-Date -f yyyyMMdd) + "_DAG.html"
+                $HTMLReport = Join-Path $ScriptFilesPath $HTMLReport  
+
                 $var = $ErrorActionPreference                           
                 $ErrorActionPreference = "stop"
 
@@ -6691,18 +6694,12 @@
         
       #region Send Email
         
-         if ($SendMail) {
-            _status "     6.1 Sending Email" 2 
-            $subject = "Mail Health Report _$(Get-Date -f 'yyyy-MM-dd')"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Sending Email :"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - To : $MailTo"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - From : $MailFrom "
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - SMTP Host : $mailsmtphost"
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): - Subject : $subject"        
-            _sendEmail $MailFrom $MailTo $subject $MailServer $ScriptFilesPath $InfoFullPath $ErrorFullPath
-        }else {
-            Log-Write -LogFullPath $InfoFullPath -LineValue "$(get-timestamp): Skipping Send Email as (SendEmail) parameter was not supplied"  
-
+        if ($SendMail) {
+            _status "     6.1 Sending Email" 2        
+            if ([string]::IsNullOrEmpty($Subject)){
+                $subject = "Environment Health Report - _$(Get-Date -f 'yyyy-MM-dd')"
+            }
+            Send-MailMessage -SmtpServer $MailServer -BodyAsHtml -Body $output -From $MailFrom -To $MailTo -Subject $subject
         }
          
       #endregion Send Email       
